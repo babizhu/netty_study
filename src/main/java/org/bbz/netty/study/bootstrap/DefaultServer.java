@@ -41,8 +41,6 @@ public class DefaultServer implements IServer{
         }
 
         private DefaultServer build(){
-            
-
             return new DefaultServer();
         }
     }

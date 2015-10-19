@@ -6,7 +6,7 @@ import java.io.IOException;
  * Created by liu_k on 2015/10/15.
  *
  * 学习proxyStudy的启动代码方式
- * 也就是说启动类是server的一个内部类
+ * 也就是说启动类是server的一个内部类DefaultBootstrap来进行
  *
  */
 public class Launcher{
