@@ -17,9 +17,10 @@ public class Launcher{
     public static void main( String[] args ){
         new Launcher().run();
     }
+
     private void run(){
         int port = 8000;
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
+        EventLoopGroup bossGroup = new NioEventLoopGroup( 1 );
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap b = new ServerBootstrap();
@@ -35,16 +36,14 @@ public class Launcher{
                     .childOption( ChannelOption.SO_KEEPALIVE, true );
 
             // Bind and start to accept incoming connections.
-            ChannelFuture f = b.bind( port ).addListener(
-                    new ChannelFutureListener(){
+            ChannelFuture f = b.bind( port ).addListener( new ChannelFutureListener(){
                 @Override
-                public void operationComplete( ChannelFuture future )
-                        throws Exception{
+                public void operationComplete( ChannelFuture future ) throws Exception{
                     if( future.isSuccess() ) {
                         Channel channel = future.channel();
                         SocketAddress socketAddress = channel.remoteAddress() == null ? channel.localAddress() : channel.remoteAddress();
                         System.out.println( socketAddress );
-                    }else {
+                    } else {
                         System.out.println( "出错啦：" + future.cause() );
                     }
                 }

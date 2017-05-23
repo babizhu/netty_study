@@ -1,4 +1,4 @@
-package org.bbz.netty.study.EmbeddedChannel;
+package org.bbz.netty.study.embeddedChannel;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

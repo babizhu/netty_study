@@ -10,11 +10,9 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 import java.util.Arrays;
+import java.util.EventListener;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * Created by liu_k on 2015/10/19.
@@ -79,7 +77,65 @@ public class FutureTest{
         }
     }
 
+    private interface Listeners<F extends FutureWithListeners> extends EventListener{
+        void operationComplete(F future) throws Exception;
+    }
+
+    private interface FutureWithListeners<V> extends Future<V>{
+        void addListeners( Listeners listeners);
+    }
+
+    /**
+     * 耗时任务快速返回一个future
+     * @return
+     */
+    private FutureWithListeners<?> doSometingAnync(){
+        FutureWithListeners<Void> futureWithListeners = new FutureWithListeners<Void>(){
+            @Override
+            public boolean cancel( boolean mayInterruptIfRunning ){
+                return false;
+            }
+
+            @Override
+            public boolean isCancelled(){
+                return false;
+            }
+
+            @Override
+            public boolean isDone(){
+                return false;
+            }
+
+            @Override
+            public Void get() throws InterruptedException, ExecutionException{
+                return null;
+            }
+
+            @Override
+            public Void get( long timeout, TimeUnit unit ) throws InterruptedException, ExecutionException, TimeoutException{
+                return null;
+            }
+
+            @Override
+            public void addListeners( Listeners listeners ){
+
+            }
+        };
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.execute( () -> {
+            //这是一个耗时任务
+
+        });
+
+        return null;
+    }
     private static void t1(){
         //final Channel channel = channelFactory().newChannel();
+        ExecutorService service = Executors.newCachedThreadPool();
+        Future<?> future = service.submit( () -> {
+            System.out.println();
+        } );
+
+        //future.
     }
 }

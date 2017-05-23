@@ -1,4 +1,4 @@
-package org.bbz.netty.study.EmbeddedChannel;
+package org.bbz.netty.study.embeddedChannel;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -8,8 +8,8 @@ import java.util.List;
 
 /**
  * Created by liu_k on 2015/10/14.
- * 用于学习在没有真实网络的情况下如何测试ChannelHandler的例子代码。
- * 详细的测试方法请参看相应的test方法FixedLengthFrameDecoderTest
+ * 鍒╃敤EmbeddedChannel鏉ユ祴璇曞悇绉峜hannel鏄惁姝ｇ‘锛屽嵆浣垮湪娌℃湁缃戠粶鐨勬儏鍐典笅
+ * 鏈被灏辨槸涓�涓娴嬭瘯瀵硅薄锛屽叿浣撶殑娴嬭瘯浠ｇ爜璇峰弬鐪婩ixedLengthFrameDecoderTest
  */
 public class FixedLengthFrameDecoder extends ByteToMessageDecoder{
 
